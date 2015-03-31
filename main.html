@@ -5,68 +5,118 @@
     <style type="text/css">
     body
     {
-      background-color: rgb(0, 103, 71)
+      background-color: #006747;
     }
 
-    .myTable
+    .header
      {
        border-collapse: collapse;
        width: 100%;
-       background-color: white
+       background-color: white;
      }
-    .myTable-top
+    .header-top
       {
         border: 1px solid black;
         margin-bottom: 0;
         padding-bottom: 0;
-        background-color: rgb(00, 33, 00);
-        color: rgb(0, 103, 71);
+        background-color: #002100;
+        color: #006747;
       }
-    .myTable-top td
+    .header-top td
       {
         border: 1px solid black;
         font-size: 2.5em;
         align: center;
       }
-    .myTable-options
+    .header-options
     {
       border: 1px solid black;
       border-top: 0;
       margin-top: 0;
       padding-top: 0;
     }
-    .myTable-options td
+    .header-options td
     {
       border: 1px solid black;
       border-top: 0;
       font-size: 1.25em
     }
+    #highlighted
+    {
+      text-align: center;
+      background-color: #002100;
+      color: #006747;
+    }
+    #notHighlighted
+    {
+      text-align: center;
+    }
+
+    img
+    {
+      border:1px solid #;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+      float: center;
+    }
+
+    #testImage
+    {
+      position: absolute;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 200px;
+      height: 500px;
+    }
 
     </style>
+
+    <script language="JavaScript">
+      function getFileNames(dir, files_)
+       {
+        files_ = files_ || [];
+        var files = fs.readdirSync(dir);
+        for (var i in files)
+         {
+          var name = dir + '/' + files[i];
+          files_.push(name);
+         }
+        return files_;
+       }
+       var fileNames=getFileNames(Resources);
+    </script>
 
   </head>
 
   <body>
-    <!--Beginning of top table-->
-    <div>
+    <!-- Beginning of top table -->
+    <div id="headerDiv">
 
-      <table class="myTable myTable-top">
+      <table class="header header-top">
         <tr>
           <td align="center"> Binghamton University Glee Club </td>
         </tr>
       </table>
 
-      <table class = "mytable myTable-options">
+      <table class = "header header-options">
         <tr>
-          <td width="20%" align="center" bgcolor="#002100"><font color="#006747">Home</font></td>
-          <td width="20%" align="center">Members</td>
-          <td width="20%" align="center">News</td>
-          <td width="20%" align="center">Repertoire</td>
-          <td width="20%" align="center">Contact Us</td>
+          <td width="20%" id="highlighted">Home</td>
+          <td width="20%" id="notHighlighted">Members</td>
+          <td width="20%" id="notHighlighted">News</td>
+          <td width="20%" id="notHighlighted">Repertoire</td>
+          <td width="20%" id="notHighlighted">Contact Us</td>
         </tr>
       </table>
 
     </div>
-    <!--Ending of top table-->
+    <div id="photosDiv">
+      <var>
+      <img id="testImage" src=fileNames[0]>
+
+    </div>
+    <!-- Ending of top table -->
   </body>
 </html>
