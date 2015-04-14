@@ -1,3 +1,33 @@
+<?php
+  $root = '';
+  $path = 'resources/'
+
+  function getImagesFromDir($path) {
+      $images = array();
+      if ( $img_dir = @opendir($path) ) {
+          while ( false !== ($img_file = readdir($img_dir)) ) {
+              // checks for gif, jpg, png
+              if ( preg_match("/(\.gif|\.jpg|\.png)$/", $img_file) ) {
+                  $images[] = $img_file;
+              }
+          }
+          closedir($img_dir);
+      }
+      return $images;
+  }
+
+  function getRandomFromArray($ar) {
+      mt_srand( (double)microtime() * 1000000 ); // php 4.2+ not needed
+      $num = array_rand($ar);
+      return $ar[$num];
+  }
+
+  $imgList = getImagesFromDir($root . $path);
+
+  $img = getRandomFromArray($imgList);
+?>
+
+
 <html>
   <head>
     <title>Binghamton University Glee Club</title>
@@ -73,22 +103,6 @@
     }
 
     </style>
-
-    <script language="JavaScript">
-      function getFileNames(dir, files_)
-       {
-        files_ = files_ || [];
-        var files = fs.readdirSync(dir);
-        for (var i in files)
-         {
-          var name = dir + '/' + files[i];
-          files_.push(name);
-         }
-        return files_;
-       }
-       var fileNames=getFileNames(Resources);
-    </script>
-
   </head>
 
   <body>
@@ -113,8 +127,10 @@
 
     </div>
     <div id="photosDiv">
-      <var>
-      <img id="testImage" src=fileNames[0]>
+
+  <!--    <img id="testImage" src="resources/testImage2.jpg"> -->
+
+    <img id="testImage" src="<?php echo $path . $img ?>" alt="" />
 
     </div>
     <!-- Ending of top table -->
